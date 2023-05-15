@@ -5,15 +5,16 @@ import Dysmsapi, * as dysmsapi from '@alicloud/dysmsapi20170525';
 import * as OpenApi from '@alicloud/openapi-client';
 // @ts-ignore
 import * as Util from '@alicloud/tea-util';
+import { toInteger } from 'lodash';
 
-const myEmail = process.env.MY_MAIL;
+const myEmail = process.env.EMAIL_USER;
 const mailTransport = nodemailer.createTransport({
-  // host: 'smtp.qq.phone',
-  service: 'qq',
+  host: process.env.EMAIL_HOST,
+  port: toInteger(process.env.EMAIL_PORT) || 25,
   secure: true, //安全方式发送,建议都加上
   auth: {
     user: myEmail,
-    pass: process.env.MAILE_CODE
+    pass: process.env.EMAIL_PASS
   }
 });
 
