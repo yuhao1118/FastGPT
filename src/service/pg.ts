@@ -14,7 +14,8 @@ export const connectPg = async () => {
     database: process.env.PG_DB_NAME,
     max: 20,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000
+    connectionTimeoutMillis: 2000,
+    ssl: true
   });
 
   global.pgClient.on('error', (err) => {
