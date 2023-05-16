@@ -11,10 +11,8 @@ import { resStreamResponse } from '@/service/utils/chat';
 import { searchKb } from '@/service/plugins/searchKb';
 import { ChatRoleEnum } from '@/constants/chat';
 
-export const runtime = 'edge';
-
 /* 发送提示词 */
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   let step = 0; // step=1时，表示开始了流响应
   const stream = new PassThrough();
   stream.on('error', () => {
@@ -136,3 +134,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 }
+
+export const GET = handler;
+export const POST = handler;
